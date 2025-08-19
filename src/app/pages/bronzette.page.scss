@@ -1,0 +1,210 @@
+/* Thème sable & lagon (inspiré des cartes) */
+:host {
+  --teal:#21bfc8;
+  --teal-dark:#149aa2;
+  --sand:#f3ede3;
+  --ink:#142127;
+  --white:#ffffff;
+  --shadow:0 10px 25px rgba(0,0,0,.08);
+  --radius:16px;
+  display:block;
+  color:var(--ink);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    linear-gradient(180deg, rgba(243,237,227,.55), rgba(243,237,227,0)) no-repeat,
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path fill="%23f7f2ea" d="M0 0h8v8H0z"/></svg>') repeat;
+}
+
+.container { width:min(1100px, 92%); margin-inline:auto; }
+.section { padding:72px 0; }
+.section.alt { background:var(--sand); }
+.section-title {
+  font-family: Montserrat, sans-serif;
+  font-weight:800; letter-spacing:.4px;
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.1rem);
+  margin:0 0 12px 0;
+}
+p { line-height:1.6; }
+
+/* Header */
+.site-header{
+  background: linear-gradient(180deg, var(--sand), rgba(255,255,255,0));
+  position:sticky; top:0; z-index:20;
+  backdrop-filter:saturate(180%) blur(8px);
+}
+.header-inner{display:flex; align-items:center; justify-content:space-between; gap:24px; padding:14px 0}
+.logo-script{
+  font-family: Allison, cursive;
+  font-size: clamp(2.2rem, 4vw + 1rem, 3.6rem);
+  color: var(--teal-dark);
+  margin:0; line-height:1;
+}
+.logo-script .thin{font-weight:400; font-family: Montserrat, sans-serif; font-size:.42em; margin-left:.2em}
+.baseline{margin:.15rem 0 0 2px; font-weight:600; color:var(--ink)}
+
+.main-nav ul{display:flex; list-style:none; gap:18px; margin:0; padding:0; align-items:center}
+.main-nav a{font-weight:600; text-decoration:none; color:var(--ink)}
+.main-nav .btn{padding:10px 14px; border-radius:999px; background:var(--teal); color:var(--white)}
+.main-nav .btn:hover{background:var(--teal-dark)}
+.nav-toggle{display:none}
+
+.wave svg{width:100%; height:60px; display:block}
+.wave path{fill:var(--teal); opacity:.2}
+
+/* Hero */
+.hero{
+  background: linear-gradient(180deg, rgba(33,191,200,.08), rgba(33,191,200,0));
+  padding:56px 0 72px;
+}
+.hero-inner{display:grid; grid-template-columns: 1fr; align-items:center}
+.hero-text h2{font-size:clamp(1.8rem, 3vw + 1rem, 2.6rem); margin:0 0 8px}
+.hero .accent{color:var(--teal-dark)}
+.hero-cta .btn{margin-right:12px}
+
+/* Layouts & cards */
+.grid-2{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center}
+.card{background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+.card img{display:block; width:100%; height:auto}
+.card.photo{padding:0}
+.card .card-body{padding:16px}
+
+.btn{display:inline-block; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:700; border:2px solid transparent}
+.btn-primary{background:var(--teal); color:var(--white)}
+.btn-primary:hover{background:var(--teal-dark)}
+.btn-outline{border-color:var(--teal); color:var(--teal); background:transparent}
+.btn-outline:hover{background:var(--teal); color:var(--white)}
+
+.menu-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:22px; margin-top:14px}
+.note{opacity:.8; font-size:.95rem; margin-top:12px}
+
+/* Horaires */
+.hours{display:grid; gap:10px; max-width:560px}
+.hour-row{display:flex; justify-content:space-between; padding:12px 16px; border-radius:12px; background:var(--white); box-shadow:var(--shadow)}
+.hour-row em{opacity:.7}
+
+/* Formulaire */
+.form{display:grid; gap:10px; padding:18px}
+.form label{display:grid; gap:6px; font-weight:600}
+.form input, .form textarea{padding:12px 14px; border:1px solid #dcd6ce; border-radius:10px; font:inherit}
+.form button{margin-top:6px}
+
+/* Divers */
+.checks{padding-left:18px} .checks li{margin:6px 0}
+.map-embed{display:flex; align-items:center; justify-content:center; min-height:260px}
+.map-placeholder{opacity:.6}
+.socials a{margin-right:12px}
+.site-footer{padding:28px 0; background: linear-gradient(0deg, var(--sand), rgba(255,255,255,0))}
+.footer-inner{display:flex; gap:16px; justify-content:space-between; align-items:center; flex-wrap:wrap}
+.footer-inner a{margin-left:12px; color:inherit; text-decoration:none}
+
+/* Mobile */
+@media (max-width:860px){
+  .grid-2{grid-template-columns:1fr}
+  .main-nav ul{display:none}
+  .nav-toggle{display:inline-flex; background:transparent; border:2px solid var(--teal); padding:8px 12px; border-radius:999px; font-weight:700}
+  .main-nav[aria-expanded="true"] ul{
+    display:flex; flex-direction:column; position:absolute; right:4%; top:72px;
+    background:var(--white); padding:14px; border-radius:14px; box-shadow:var(--shadow)
+  }
+}
+/* Styles existants … */
+
+.hours { display: grid; gap: 10px; max-width: 560px; }
+.hour-row {
+  display: flex; justify-content: space-between;
+  padding: 12px 16px; border-radius: 12px;
+  background: var(--white); box-shadow: var(--shadow);
+}
+
+/* Mise en avant du jour courant — bleu clair discret */
+.hour-row.today {
+  background: rgba(33,191,200,.12);                  /* bleu clair */
+  border: 1px solid rgba(20,154,162,.25);
+  box-shadow: none;
+  position: relative;
+}
+.hour-row.today::before {                             /* petit repère à gauche */
+  content: '';
+  position: absolute; left: 0; top: 8px; bottom: 8px;
+  width: 4px; border-radius: 4px;
+  background: #21bfc8; opacity: .6;
+}
+
+
+.card { position: relative; } /* indispensable pour l'absolu interne */
+
+.card-icon{
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 56px; height: 56px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+}
+.card-icon img{
+  display: block;
+  max-width: 70%;  /* ajuste le ratio dans le badge */
+  max-height: 70%;
+  object-fit: contain;
+}
+
+/* (optionnel) si le contenu de .card passe sous l’icône, ajoutez un padding-top */
+.card .card-body { padding-top: 14px; }
+
+@media (max-width: 860px){
+  .card-icon{ width: 48px; height: 48px; }
+}
+/* Badges sociaux ronds et colorés */
+.socials{
+  display:flex; align-items:center; gap:12px;
+}
+
+.btn-social{
+  --size:48px;
+  width:var(--size); height:var(--size);
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:999px;
+  color:#fff;                                     /* couleur de l'icône */
+  background:#999;                                /* remplacé par variantes ci-dessous */
+  box-shadow: var(--shadow);
+  border:1px solid rgba(0,0,0,.05);
+  text-decoration:none;
+  transition: transform .15s ease, box-shadow .15s ease, filter .2s ease;
+}
+.btn-social i{ font-size:1.2rem; line-height:1; }
+
+.btn-social:hover{
+  transform: translateY(-2px);
+  filter: saturate(115%);
+  box-shadow: 0 8px 28px rgba(0,0,0,.12);
+}
+.btn-social:active{ transform: translateY(0); }
+.btn-social:focus-visible{
+  outline:3px solid color-mix(in srgb, var(--teal), white 35%);
+  outline-offset:2px;
+}
+
+/* Couleurs de marque */
+.btn-social.fb{ background:#1877F2; }             /* Facebook */
+.btn-social.ig{
+  /* Dégradé officiel Instagram */
+  background: radial-gradient(circle at 30% 107%,
+    #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.btn-social.ta{
+  background:#34E0A1;                             /* Tripadvisor vert */
+  color:#101010;                                   /* icône sombre pour contraste */
+}
+
+/* Accessibilité : texte masqué mais lisible par les lecteurs d’écran */
+.sr-only{
+  position:absolute !important; width:1px; height:1px;
+  padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* Tailles réduites sur mobile */
+@media (max-width: 860px){
+  .btn-social{ --size:44px; }
+}
