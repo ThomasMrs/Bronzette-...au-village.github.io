@@ -91,7 +91,6 @@
            aria-label="Ouvrir la carte Boissons &amp; Apéritifs">
           <img src="boissons.svg" alt="">
         </a>
-
         <div class="card-body">
           <h4>Boissons &amp; Apéritifs</h4>
           <a class="btn btn-primary"
@@ -108,7 +107,6 @@
            aria-label="Ouvrir la carte Plats &amp; Desserts">
           <img src="menu.svg" alt="">
         </a>
-
         <div class="card-body">
           <h4>Plats &amp; Desserts</h4>
           <a class="btn btn-primary"
@@ -122,7 +120,7 @@
   </div>
 </section>
 
-<!-- Fenêtre modale pour l’affichage des cartes -->
+<!-- Modale (lightbox) -->
 <div id="modal" class="modal" aria-hidden="true">
   <button class="modal-close" aria-label="Fermer">&times;</button>
   <img class="modal-content" id="modal-img" alt="Carte">
@@ -246,7 +244,6 @@
 <script src="script.js"></script>
 
 <script>
-  // S'exécute quand le DOM est prêt
   document.addEventListener('DOMContentLoaded', () => {
     const modal    = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
@@ -258,10 +255,8 @@
       caption.textContent = title || '';
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
-      // Empêche le scroll de fond
       document.body.style.overflow = 'hidden';
     }
-
     function closeLightbox() {
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
@@ -269,28 +264,21 @@
       document.body.style.overflow = '';
     }
 
-    // Délégation: intercepte tout clic sur <a data-lightbox>
+    // Intercepte tout clic sur <a data-lightbox>
     document.body.addEventListener('click', (e) => {
       const link = e.target.closest('a[data-lightbox]');
       if (!link) return;
-
-      e.preventDefault(); // bloque la navigation
+      e.preventDefault();
       const src = link.getAttribute('href');
       const title = link.closest('.card')?.querySelector('h4')?.textContent?.trim() || '';
       openLightbox(src, title);
     });
 
-    // Fermeture (X, fond, Échap)
+    // Fermetures
     closeBtn.addEventListener('click', closeLightbox);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeLightbox();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-    });
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   });
 </script>
-
-
 </body>
 </html>
