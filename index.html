@@ -83,37 +83,37 @@
     <p>Boissons, apéritifs, p’tit déj, burgers, pokes bowls, desserts et suggestions du moment.</p>
 
     <div class="menu-grid">
-      <!-- Carte Boissons -->
+
       <article class="card">
         <a class="card-icon"
-           href="Boisson.jpg"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Ouvrir la carte Boissons &amp; Apéritifs">
+          href="Boissons.jpg"
+          data-lightbox
+          aria-label="Ouvrir la carte Boissons &amp; Apéritifs">
           <img src="boissons.svg" alt="">
         </a>
 
         <div class="card-body">
           <h4>Boissons &amp; Apéritifs</h4>
           <a class="btn btn-primary"
-             href="Boisson.jpg"
-             target="_blank" rel="noopener noreferrer">Ouvrir</a>
+            href="Boissons.jpg"
+            data-lightbox>Ouvrir</a>
         </div>
       </article>
 
       <!-- Carte Plats & Desserts -->
       <article class="card">
         <a class="card-icon"
-           href="Menu.jpg"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Ouvrir la carte Plats &amp; Desserts">
+          href="Menu.jpg"
+          data-lightbox
+          aria-label="Ouvrir la carte Plats &amp; Desserts">
           <img src="menu.svg" alt="">
         </a>
 
         <div class="card-body">
           <h4>Plats &amp; Desserts</h4>
           <a class="btn btn-primary"
-             href="Menu.jpg"
-             target="_blank" rel="noopener noreferrer">Ouvrir</a>
+            href="Menu.jpg"
+            data-lightbox>Ouvrir</a>
         </div>
       </article>
     </div>
@@ -236,5 +236,12 @@
 </footer>
 
 <script src="script.js"></script>
+<!-- Fenêtre modale pour l’affichage des cartes -->
+<div id="modal" class="modal">
+  <span class="modal-close" aria-label="Fermer">&times;</span>
+  <img class="modal-content" id="modal-img" alt="Carte">
+  <div id="caption"></div>
+</div>
+
 </body>
 </html>
