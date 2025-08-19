@@ -181,7 +181,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: radial-gradient(circle at 30% 107%,
     #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
-.btn-social.ta{ background:#34E0A1; color:#101010 }
+
+/* Style de base du bouton rond */
+.btn-social.google {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;              /* même taille que tes autres boutons */
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;         /* blanc au lieu du gris si tu veux mettre en valeur le logo */
+  overflow: hidden;
+}
+
+/* Image Google bien centrée et plus grande */
+.btn-social img.icon-google {
+  width: 60%;              /* prend 60% de la largeur du bouton */
+  height: 60%;
+  object-fit: contain;
+}
+
 
 .sr-only{
   position:absolute !important; width:1px; height:1px;
