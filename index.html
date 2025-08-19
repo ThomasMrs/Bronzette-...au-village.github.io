@@ -3,18 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Bronzette … au village à Argelès-sur-Mer : café-restaurant convivial, produits locaux, burgers, poke bowls, desserts et formules. Réservez votre table." />
   <link rel="icon" type="image/png" href="logo.png">
-  <title>Bronzette … au village — Café • Restaurant</title>
+
+  <!-- Préconnexions (CDN icônes) -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
   <!-- Icônes (Font Awesome) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        rel="stylesheet"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    rel="stylesheet"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
 
+  <!-- Partage social -->
+  <meta property="og:title" content="Bronzette … au village — Café • Restaurant" />
+  <meta property="og:description" content="Ambiance chaleureuse, produits locaux et recettes maison à Argelès-sur-Mer." />
+  <meta property="og:type" content="restaurant" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:image" content="logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- (Optionnel) Politique CSP via meta — privilégier un en-tête HTTP côté serveur -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    img-src 'self' data: https:;
+    script-src 'self';
+    style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline';
+    font-src 'self' https://cdnjs.cloudflare.com data:;
+    frame-src https://www.google.com;
+    connect-src 'self';
+  ">
+
+  <title>Bronzette … au village — Café • Restaurant</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+<a class="skip-link" href="#a-propos">Aller au contenu</a>
 
 <header class="site-header">
   <div class="container header-inner">
@@ -39,7 +65,7 @@
     </nav>
   </div>
   <div class="wave" aria-hidden="true">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" width="1440" height="120">
       <path d="M0,80 C240,140 480,20 720,80 C960,140 1200,20 1440,80 L1440,120 L0,120 Z"></path>
     </svg>
   </div>
@@ -50,7 +76,7 @@
     <div class="hero-text">
       <h2>Bienvenue à <span class="accent">Bronzette</span></h2>
       <p>Ambiance chaleureuse, produits locaux et recettes maison.
-        Découvrez nos apéritifs, burgers, pokes bowls, desserts et la formule gourmande.</p>
+        Découvrez nos apéritifs, burgers, poke bowls, desserts et la formule gourmande.</p>
       <p class="hero-cta">
         <a class="btn btn-primary" href="#cartes" data-scroll>Voir les cartes</a>
         <a class="btn btn-outline" href="#reservation" data-scroll>Réserver une table</a>
@@ -72,7 +98,8 @@
       </ul>
     </div>
     <figure class="card photo">
-      <img src="photo.jpg" alt="Carte Bronzette" loading="lazy">
+      <img src="photo.jpg" alt="Salle et carte du restaurant Bronzette"
+           loading="lazy" width="1200" height="800">
     </figure>
   </div>
 </section>
@@ -80,7 +107,7 @@
 <section id="cartes" class="section alt">
   <div class="container">
     <h3 class="section-title">Nos cartes</h3>
-    <p>Boissons, apéritifs, p’tit déj, burgers, pokes bowls, desserts et suggestions du moment.</p>
+    <p>Boissons, apéritifs, p’tit déj, burgers, poke bowls, desserts et suggestions du moment.</p>
 
     <div class="menu-grid">
       <!-- Carte Boissons -->
@@ -89,7 +116,7 @@
            href="Boissons.jpg"
            data-lightbox
            aria-label="Ouvrir la carte Boissons &amp; Apéritifs">
-          <img src="boissons.svg" alt="">
+          <img src="boissons.svg" alt="" width="56" height="56" loading="lazy">
         </a>
         <div class="card-body">
           <h4>Boissons &amp; Apéritifs</h4>
@@ -105,7 +132,7 @@
            href="Menu.jpg"
            data-lightbox
            aria-label="Ouvrir la carte Plats &amp; Desserts">
-          <img src="menu.svg" alt="">
+          <img src="menu.svg" alt="" width="56" height="56" loading="lazy">
         </a>
         <div class="card-body">
           <h4>Plats &amp; Desserts</h4>
@@ -121,12 +148,11 @@
 </section>
 
 <!-- Modale (lightbox) -->
-<div id="modal" class="modal" aria-hidden="true">
+<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="caption">
   <button class="modal-close" aria-label="Fermer">&times;</button>
-  <img class="modal-content" id="modal-img" alt="Carte">
+  <img class="modal-content" id="modal-img" alt="">
   <div id="caption" aria-live="polite"></div>
 </div>
-
 
 <section id="horaires" class="section">
   <div class="container">
@@ -149,15 +175,15 @@
       </ul>
     </div>
 
-    <form class="card form" id="reservationForm">
+    <form class="card form" id="reservationForm" novalidate>
       <label>Nom et prénom
-        <input name="name" required>
+        <input name="name" autocomplete="name" required>
       </label>
       <label>Téléphone
-        <input name="phone" type="tel" required>
+        <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
       </label>
       <label>E-mail
-        <input name="email" type="email">
+        <input name="email" type="email" autocomplete="email">
       </label>
       <label>Date
         <input name="date" type="date" required>
@@ -166,7 +192,7 @@
         <input name="time" type="time" required>
       </label>
       <label>Nombre de couverts
-        <input name="covers" type="number" min="1" value="2" required>
+        <input name="covers" type="number" min="1" step="1" inputmode="numeric" value="2" required>
       </label>
       <label>Message
         <textarea name="message" rows="4" placeholder="Allergies, occasion, etc."></textarea>
@@ -235,50 +261,48 @@
   <div class="container footer-inner">
     <p>© <span id="year"></span> Bronzette … au village — Tous droits réservés.</p>
     <nav aria-label="Liens légaux">
-      <a href="#">Mentions légales</a>
-      <a href="#">Politique de confidentialité</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Politique de confidentialité</a>
     </nav>
   </div>
 </footer>
 
-<script src="script.js"></script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const modal    = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-    const caption  = document.getElementById('caption');
-    const closeBtn = document.querySelector('.modal-close');
-
-    function openLightbox(src, title) {
-      modalImg.src = src;
-      caption.textContent = title || '';
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      modalImg.removeAttribute('src');
-      document.body.style.overflow = '';
-    }
-
-    // Intercepte tout clic sur <a data-lightbox>
-    document.body.addEventListener('click', (e) => {
-      const link = e.target.closest('a[data-lightbox]');
-      if (!link) return;
-      e.preventDefault();
-      const src = link.getAttribute('href');
-      const title = link.closest('.card')?.querySelector('h4')?.textContent?.trim() || '';
-      openLightbox(src, title);
-    });
-
-    // Fermetures
-    closeBtn.addEventListener('click', closeLightbox);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeLightbox(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-  });
+<!-- Données structurées LocalBusiness / Restaurant -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Bronzette … au village",
+  "image":"logo.png",
+  "telephone":"+33 4 68 62 85 43",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"36 Rue de la Libération",
+    "postalCode":"66700",
+    "addressLocality":"Argelès-sur-Mer",
+    "addressCountry":"FR"
+  },
+  "geo":{"@type":"GeoCoordinates","latitude":42.5465351,"longitude":3.0240401},
+  "url":"/",
+  "sameAs":[
+    "https://www.facebook.com/people/Bronzette-Argel%C3%A8s/100076610630984/",
+    "https://www.instagram.com/bronzette.argeles/",
+    "https://www.tripadvisor.fr/Restaurant_Review-g196598-d24167135-Reviews-Bronzette_Au_Village-Argeles_sur_Mer_Pyrenees_Orientales_Occitanie.html"
+  ],
+  "servesCuisine":["Française","Burgers","Poke bowls","Desserts"],
+  "priceRange":"€€",
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"00:00","closes":"00:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"09:00","closes":"21:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"08:00","closes":"21:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"09:00","closes":"21:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:00","closes":"21:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"21:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"12:00"}
+  ]
+}
 </script>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -30,6 +30,20 @@ body{
 }
 p { line-height:1.6; }
 
+/* Lien d’évitement */
+.skip-link{
+  position:absolute; left:-9999px; top:auto;
+}
+.skip-link:focus-visible{
+  left:16px; top:16px; background:#fff; padding:10px 14px; border-radius:8px; box-shadow:var(--shadow);
+}
+
+/* Focus visible global */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline:3px solid #7fdfe5;
+  outline-offset:2px;
+}
+
 /* Header */
 .site-header{
   background: linear-gradient(180deg, var(--sand), rgba(255,255,255,0));
@@ -94,8 +108,7 @@ p { line-height:1.6; }
   position: relative;
 }
 .hour-row.today::before{
-  content:'';
-  position:absolute; left:0; top:8px; bottom:8px;
+  content:''; position:absolute; left:0; top:8px; bottom:8px;
   width:4px; border-radius:4px; background:#21bfc8; opacity:.6;
 }
 
@@ -145,10 +158,6 @@ p { line-height:1.6; }
 .btn-social i{ font-size:1.2rem; line-height:1; }
 .btn-social:hover{ transform:translateY(-2px); filter:saturate(115%); box-shadow:0 8px 28px rgba(0,0,0,.12) }
 .btn-social:active{ transform:translateY(0) }
-.btn-social:focus-visible{
-  outline:3px solid #7fdfe5; /* proche de color-mix */
-  outline-offset:2px;
-}
 .btn-social.fb{ background:#1877F2 }
 .btn-social.ig{
   background: radial-gradient(circle at 30% 107%,
@@ -219,5 +228,8 @@ p { line-height:1.6; }
   max-width: 80%;
 }
 
-
-
+/* Préférences utilisateur : réduire les animations */
+@media (prefers-reduced-motion: reduce){
+  * { scroll-behavior: auto !important; }
+  .btn-social:hover{ transform:none; }
+}
