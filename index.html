@@ -6,8 +6,12 @@
   <meta name="description" content="Bronzette … au village à Argelès-sur-Mer : café-restaurant convivial, produits locaux, burgers, poke bowls, desserts et formules. Réservez votre table." />
   <link rel="icon" type="image/png" href="logo.png">
 
-  <!-- Préconnexions (CDN icônes) -->
+  <title>Bronzette … au village — Café • Restaurant</title>
+
+  <!-- Préconnexions (CDN icônes + Google Fonts) -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Icônes (Font Awesome) -->
   <link
@@ -16,10 +20,13 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
 
+  <!-- Police manuscrite (Allison) -->
+  <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+
   <!-- Partage social -->
   <meta property="og:title" content="Bronzette … au village — Café • Restaurant" />
   <meta property="og:description" content="Ambiance chaleureuse, produits locaux et recettes maison à Argelès-sur-Mer." />
-  <meta property="og:type" content="restaurant" />
+  <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:image" content="logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -29,23 +36,25 @@
     default-src 'self';
     img-src 'self' data: https:;
     script-src 'self';
-    style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline';
-    font-src 'self' https://cdnjs.cloudflare.com data:;
+    style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+    font-src  'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com data:;
     frame-src https://www.google.com;
     connect-src 'self';
+    object-src 'none';
   ">
 
-  <title>Bronzette … au village — Café • Restaurant</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body id="top">
 
 <a class="skip-link" href="#a-propos">Aller au contenu</a>
 
 <header class="site-header">
   <div class="container header-inner">
     <div class="brand">
-      <h1 class="logo-script">Bronzette <span class="thin">… au village</span></h1>
+      <h1 class="logo-script">
+        <a href="#top" class="home-link" data-scroll>Bronzette <span class="thin">… au village</span></a>
+      </h1>
       <p class="baseline">Café • Restaurant</p>
     </div>
 
@@ -71,191 +80,227 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-text">
-      <h2>Bienvenue à <span class="accent">Bronzette</span></h2>
-      <p>Ambiance chaleureuse, produits locaux et recettes maison.
-        Découvrez nos apéritifs, burgers, poke bowls, desserts et la formule gourmande.</p>
-      <p class="hero-cta">
-        <a class="btn btn-primary" href="#cartes" data-scroll>Voir les cartes</a>
-        <a class="btn btn-outline" href="#reservation" data-scroll>Réserver une table</a>
-      </p>
+<main>
+  <!-- HERO (haut : avion + banderole, mouettes) -->
+  <section class="hero">
+    <!-- décor de ciel (défile avec la section) -->
+    <!-- <div class="decor sky" aria-hidden="true">
+      <img class="icon plane" src="/assets/plane.png" alt="" loading="lazy">
+      <span class="banner">BRONZETTE</span>
+      <img class="icon gull g1" src="/assets/seagull1.png" alt="" loading="lazy">
+      <img class="icon gull g2" src="/assets/seagull2.png" alt="" loading="lazy">
+    </div> -->
+
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h2>Bienvenue à <span class="accent">Bronzette</span></h2>
+        <p>Ambiance chaleureuse, produits locaux et recettes maison.
+          Découvrez nos apéritifs, burgers, poke bowls, desserts et la formule gourmande.</p>
+        <p class="hero-cta">
+          <a class="btn btn-primary" href="#cartes" data-scroll>Voir les cartes</a>
+          <a class="btn btn-outline" href="#reservation" data-scroll>Réserver une table</a>
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="a-propos" class="section">
-  <div class="container grid-2">
-    <div>
-      <h3 class="section-title">À propos</h3>
-      <p>Au cœur du village, notre café-restaurant vous accueille dans une atmosphère détente,
-         inspirée des teintes sable et lagon de notre identité visuelle.</p>
-      <ul class="checks">
-        <li>Produits frais &amp; cuisine maison</li>
-        <li>Cartes saisonnières</li>
-        <li>Groupes &amp; événements</li>
-      </ul>
+  <!-- À PROPOS (+ décor milieu : étoiles de mer, crabe) -->
+  <section id="a-propos" class="section">
+    <!-- <div class="decor mid" aria-hidden="true">
+      <img class="icon star s1" src="/assets/starfish1.png" alt="" loading="lazy">
+      <img class="icon crab"  src="/assets/crab.png"       alt="" loading="lazy">
+      <img class="icon star s2" src="/assets/starfish2.png" alt="" loading="lazy">
+    </div> -->
+
+    <div class="container grid-2">
+      <div>
+        <h3 class="section-title">À propos</h3>
+        <p>Au cœur du village, notre café-restaurant vous accueille dans une atmosphère détente,
+           inspirée des teintes sable et lagon de notre identité visuelle.</p>
+        <ul class="checks">
+          <li>Produits frais &amp; cuisine maison</li>
+          <li>Cartes saisonnières</li>
+          <li>Groupes &amp; événements</li>
+        </ul>
+      </div>
+      <figure class="card photo">
+        <img src="photo.jpg" alt="Salle et carte du restaurant Bronzette"
+             loading="lazy" width="1200" height="800">
+      </figure>
     </div>
-    <figure class="card photo">
-      <img src="photo.jpg" alt="Salle et carte du restaurant Bronzette"
-           loading="lazy" width="1200" height="800">
-    </figure>
-  </div>
-</section>
-
-<section id="cartes" class="section alt">
-  <div class="container">
-    <h3 class="section-title">Nos cartes</h3>
-    <p>Boissons, apéritifs, p’tit déj, burgers, poke bowls, desserts et suggestions du moment.</p>
-
-    <div class="menu-grid">
-      <!-- Carte Boissons -->
-      <article class="card">
-        <a class="card-icon"
-           href="Boissons.jpg"
-           data-lightbox
-           aria-label="Ouvrir la carte Boissons &amp; Apéritifs">
-          <img src="boissons.svg" alt="" width="56" height="56" loading="lazy">
-        </a>
-        <div class="card-body">
-          <h4>Boissons &amp; Apéritifs</h4>
-          <a class="btn btn-primary"
-             href="Boissons.jpg"
-             data-lightbox>Ouvrir</a>
-        </div>
-      </article>
-
-      <!-- Carte Plats & Desserts -->
-      <article class="card">
-        <a class="card-icon"
-           href="Menu.jpg"
-           data-lightbox
-           aria-label="Ouvrir la carte Plats &amp; Desserts">
-          <img src="menu.svg" alt="" width="56" height="56" loading="lazy">
-        </a>
-        <div class="card-body">
-          <h4>Plats &amp; Desserts</h4>
-          <a class="btn btn-primary"
-             href="Menu.jpg"
-             data-lightbox>Ouvrir</a>
-        </div>
-      </article>
-    </div>
-
-    <p class="note">*La carte peut varier selon la saison. Cocktails servis de juin à septembre.</p>
-  </div>
-</section>
-
-<!-- Modale (lightbox) -->
-<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="caption">
-  <button class="modal-close" aria-label="Fermer">&times;</button>
-  <img class="modal-content" id="modal-img" alt="">
+  </section>
+<!-- Lightbox / Modale (à placer avant </body>) -->
+<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Agrandissement de l’image">
+  <button type="button" class="modal-close" aria-label="Fermer la modale">&times;</button>
+  <img id="modal-img" class="modal-content" alt="">
   <div id="caption" aria-live="polite"></div>
 </div>
 
-<section id="horaires" class="section">
-  <div class="container">
-    <h3 class="section-title">Horaires</h3>
+  <!-- CARTES (+ décor complémentaire) -->
+  <section id="cartes" class="section alt">
+    <!-- <div class="decor mid" aria-hidden="true">
+      <img class="icon star s3" src="/assets/starfish3.png" alt="" loading="lazy">
+    </div> -->
 
-    <div class="hours" id="hoursContainer">
-      <!-- Rendu dynamique par script.js -->
+    <div class="container">
+      <h3 class="section-title">Nos cartes</h3>
+      <p>Boissons, apéritifs, p’tit déj, burgers, poke bowls, desserts et suggestions du moment.</p>
+
+      <div class="menu-grid">
+        <!-- Carte Boissons -->
+        <article class="card">
+          <a class="card-icon"
+             href="Boissons.jpg"
+             data-lightbox
+             aria-label="Ouvrir la carte Boissons &amp; Apéritifs">
+            <img src="boissons.svg" alt="" width="56" height="56" loading="lazy" role="presentation">
+          </a>
+          <div class="card-body">
+            <h4>Boissons &amp; Apéritifs</h4>
+            <a class="btn btn-primary"
+               href="Boissons.jpg"
+               data-lightbox>Ouvrir</a>
+          </div>
+        </article>
+
+        <!-- Carte Plats & Desserts -->
+        <article class="card">
+          <a class="card-icon"
+             href="Menu.jpg"
+             data-lightbox
+             aria-label="Ouvrir la carte Plats &amp; Desserts">
+            <img src="menu.svg" alt="" width="56" height="56" loading="lazy" role="presentation">
+          </a>
+          <div class="card-body">
+            <h4>Plats &amp; Desserts</h4>
+            <a class="btn btn-primary"
+               href="Menu.jpg"
+               data-lightbox>Ouvrir</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="note">*La carte peut varier selon la saison. Cocktails servis de juin à septembre.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="reservation" class="section alt">
-  <div class="container grid-2">
-    <div>
-      <h3 class="section-title">Réserver</h3>
-      <p>Contactez-nous par téléphone ou remplissez le formulaire ; nous confirmons la disponibilité rapidement.</p>
-      <ul class="contact-list">
-        <li>Téléphone : <a href="tel:+33468628543">+33 4 68 62 85 43</a></li>
-        <li>Adresse : 36 Rue de la Libération, 66700 Argelès-sur-Mer</li>
-      </ul>
-    </div>
-
-    <form class="card form" id="reservationForm" novalidate>
-      <label>Nom et prénom
-        <input name="name" autocomplete="name" required>
-      </label>
-      <label>Téléphone
-        <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
-      </label>
-      <label>E-mail
-        <input name="email" type="email" autocomplete="email">
-      </label>
-      <label>Date
-        <input name="date" type="date" required>
-      </label>
-      <label>Heure
-        <input name="time" type="time" required>
-      </label>
-      <label>Nombre de couverts
-        <input name="covers" type="number" min="1" step="1" inputmode="numeric" value="2" required>
-      </label>
-      <label>Message
-        <textarea name="message" rows="4" placeholder="Allergies, occasion, etc."></textarea>
-      </label>
-      <button class="btn btn-primary" type="submit">Envoyer</button>
-    </form>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <div class="container grid-2">
-    <div>
-      <h3 class="section-title">Nous trouver</h3>
-      <p>Stationnement à proximité. Accès PMR.</p>
-
-      <div class="socials">
-        <a class="btn-social fb"
-           aria-label="Facebook — Bronzette"
-           href="https://www.facebook.com/people/Bronzette-Argel%C3%A8s/100076610630984/?_rdr"
-           target="_blank" rel="noopener noreferrer">
-          <i aria-hidden="true" class="fa-brands fa-facebook-f"></i>
-          <span class="sr-only">Facebook</span>
-        </a>
-
-        <a class="btn-social ig"
-           aria-label="Instagram — Bronzette"
-           href="https://www.instagram.com/bronzette.argeles/"
-           target="_blank" rel="noopener noreferrer">
-          <i aria-hidden="true" class="fa-brands fa-instagram"></i>
-          <span class="sr-only">Instagram</span>
-        </a>
-
-        <a class="btn-social ta"
-           aria-label="Tripadvisor — Bronzette"
-           href="https://www.tripadvisor.fr/Restaurant_Review-g196598-d24167135-Reviews-Bronzette_Au_Village-Argeles_sur_Mer_Pyrenees_Orientales_Occitanie.html"
-           target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20" height="20" aria-hidden="true">
-            <path fill="currentColor" d="M529.6 183.6l47.1-65.7H416c-29.6-23.4-66.9-38.3-108-38.3s-78.4 14.9-108 38.3H-.7l47.1 65.7C16.5 205.5 0 237.7 0 273.1c0 68.4 55.6 124 124 124 61.7 0 113.2-45.3 122-104.2h84c8.8 59 60.3 104.2 122 104.2 68.4 0 124-55.6 124-124 0-35.4-16.5-67.6-42.4-89.5zM124 353.1c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zm328 0c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zM124 233.1c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm328 0c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40z"/>
-          </svg>
-          <span class="sr-only">Tripadvisor</span>
-        </a>
+  <!-- HORAIRES -->
+  <section id="horaires" class="section">
+    <div class="container">
+      <h3 class="section-title">Horaires</h3>
+      <div class="hours" id="hoursContainer">
+        <!-- Rendu dynamique par script.js -->
       </div>
     </div>
+  </section>
 
-    <div class="map-embed card" role="img" aria-label="Carte d'accès">
-      <iframe
-        title="Carte - Bronzette … au village"
-        loading="lazy"
-        allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=42.5465351,3.0240401&hl=fr&z=17&output=embed">
-      </iframe>
+  <!-- RÉSERVATION (+ décor bas : seaux/pelles) -->
+  <section id="reservation" class="section alt">
+    <!-- <div class="decor beach" aria-hidden="true">
+      <img class="icon bucket b1" src="/assets/bucket1.png" alt="" loading="lazy">
+      <img class="icon bucket b2" src="/assets/bucket2.png" alt="" loading="lazy">
+    </div> -->
 
-      <noscript>
-        <p>
-          <a href="https://www.google.com/maps?q=42.5465351,3.0240401&hl=fr&z=17" target="_blank" rel="noopener">
-            Ouvrir la carte dans Google Maps
-          </a>
-        </p>
-      </noscript>
+    <div class="container grid-2">
+      <div>
+        <h3 class="section-title">Réserver</h3>
+        <p>Contactez-nous par téléphone ou remplissez le formulaire ; nous confirmons la disponibilité rapidement.</p>
+        <ul class="contact-list">
+          <li>Téléphone : <a href="tel:+33468628543">+33 4 68 62 85 43</a></li>
+          <li>Adresse : 36 Rue de la Libération, 66700 Argelès-sur-Mer</li>
+        </ul>
+      </div>
+
+      <form class="card form" id="reservationForm" novalidate>
+        <label for="name">Nom et prénom</label>
+        <input id="name" name="name" autocomplete="name" required>
+
+        <label for="phone">Téléphone</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" autocomplete="email">
+
+        <label for="date">Date</label>
+        <input id="date" name="date" type="date" required>
+
+        <label for="time">Heure</label>
+        <input id="time" name="time" type="time" required>
+
+        <label for="covers">Nombre de couverts</label>
+        <input id="covers" name="covers" type="number" min="1" step="1" inputmode="numeric" value="2" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Allergies, occasion, etc."></textarea>
+
+        <button class="btn btn-primary" type="submit">Envoyer</button>
+      </form>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container grid-2">
+      <div>
+        <h3 class="section-title">Nous trouver</h3>
+        <p>Stationnement à proximité. Accès PMR.</p>
+
+        <div class="socials">
+          <a class="btn-social fb"
+             aria-label="Facebook — Bronzette"
+             href="https://www.facebook.com/people/Bronzette-Argel%C3%A8s/100076610630984/?_rdr"
+             target="_blank" rel="noopener noreferrer">
+            <i aria-hidden="true" class="fa-brands fa-facebook-f"></i>
+            <span class="sr-only">Facebook</span>
+          </a>
+
+          <a class="btn-social ig"
+             aria-label="Instagram — Bronzette"
+             href="https://www.instagram.com/bronzette.argeles/"
+             target="_blank" rel="noopener noreferrer">
+            <i aria-hidden="true" class="fa-brands fa-instagram"></i>
+            <span class="sr-only">Instagram</span>
+          </a>
+
+          <a class="btn-social ta"
+             aria-label="Tripadvisor — Bronzette"
+             href="https://www.tripadvisor.fr/Restaurant_Review-g196598-d24167135-Reviews-Bronzette_Au_Village-Argeles_sur_Mer_Pyrenees_Orientales_Occitanie.html"
+             target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20" height="20" aria-hidden="true">
+              <path fill="currentColor" d="M529.6 183.6l47.1-65.7H416c-29.6-23.4-66.9-38.3-108-38.3s-78.4 14.9-108 38.3H-.7l47.1 65.7C16.5 205.5 0 237.7 0 273.1c0 68.4 55.6 124 124 124 61.7 0 113.2-45.3 122-104.2h84c8.8 59 60.3 104.2 122 104.2 68.4 0 124-55.6 124-124 0-35.4-16.5-67.6-42.4-89.5zM124 353.1c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zm328 0c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zM124 233.1c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm328 0c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40z"/>
+            </svg>
+            <span class="sr-only">Tripadvisor</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="map-embed card" aria-label="Carte d'accès">
+        <iframe
+          title="Carte - Bronzette … au village"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=42.5465351,3.0240401&hl=fr&z=17&output=embed">
+        </iframe>
+
+        <noscript>
+          <p>
+            <a href="https://www.google.com/maps?q=42.5465351,3.0240401&hl=fr&z=17" target="_blank" rel="noopener">
+              Ouvrir la carte dans Google Maps
+            </a>
+          </p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOUT EN BAS (parasols + transat) -->
+  <!-- <div class="decor shore" aria-hidden="true">
+    <img class="icon parasol p1" src="/assets/parasol1.png"  alt="" loading="lazy">
+    <img class="icon lounger"    src="/assets/lounger.png"   alt="" loading="lazy">
+    <img class="icon parasol p2" src="/assets/parasol2.png"  alt="" loading="lazy">
+  </div> -->
+</main>
 
 <footer class="site-footer">
   <div class="container footer-inner">
@@ -291,18 +336,17 @@
   ],
   "servesCuisine":["Française","Burgers","Poke bowls","Desserts"],
   "priceRange":"€€",
-  "openingHoursSpecification":[
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"00:00","closes":"00:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"09:00","closes":"21:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"08:00","closes":"21:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"09:00","closes":"21:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:00","closes":"21:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"21:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"12:00"}
+  "openingHours": [
+    "Tu 09:00-21:00",
+    "We 08:00-21:00",
+    "Th 09:00-21:00",
+    "Fr 09:00-21:00",
+    "Sa 08:00-21:00",
+    "Su 09:00-12:00"
   ]
 }
 </script>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>

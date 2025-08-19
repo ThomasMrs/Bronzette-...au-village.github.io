@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Allison+Script&display=swap');
+
+.logo-script {
+  font-family: 'Allison Script', cursive;
+}
+
+
 /* Thème sable & lagon */
 :root{
   --teal:#21bfc8;
@@ -8,6 +15,17 @@
   --shadow:0 10px 25px rgba(0,0,0,.08);
   --radius:16px;
 }
+
+.logo-script a {
+  color: inherit;
+  text-decoration: none;
+}
+.logo-script a:hover,
+.logo-script a:focus-visible {
+  text-decoration: none;
+  color: var(--teal-dark);
+}
+
 
 html,body{height:100%}
 body{
@@ -232,4 +250,172 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (prefers-reduced-motion: reduce){
   * { scroll-behavior: auto !important; }
   .btn-social:hover{ transform:none; }
+}
+
+:root{
+  --wave-w: 56px;        /* largeur de la vague */
+  --wave-h: 10px;        /* hauteur */
+}
+
+/* Vague uniquement sur les liens de nav NON boutons */
+.main-nav a:not(.btn){
+  position: relative;
+  padding-bottom: 16px;
+}
+
+/* Sécurité : aucune vague sur le bouton .btn même s’il restait un style plus haut */
+.main-nav a.btn::after{
+  content: none;
+}
+
+/* Vague : révélation de gauche à droite, bleu #21bfc8 (== var(--teal)) */
+.main-nav a:not(.btn)::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:var(--wave-w);
+  height:var(--wave-h);
+  opacity:0;
+  overflow:hidden;
+  pointer-events:none;
+
+  background-image:url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="10" viewBox="0 0 56 10">\
+<path d="M0 7 C 6 7 6 3 12 3 S 18 7 24 7 30 3 36 3 42 7 48 7 54 3 56 3" fill="none" stroke="%2321bfc8" stroke-width="2" stroke-linecap="round"/>\
+</svg>');
+  background-repeat:no-repeat;
+  background-position:left bottom;
+  background-size: 0 var(--wave-h);        /* se révèle en largeur */
+  transition: background-size .55s ease-out, opacity .15s ease .1s;
+}
+
+.main-nav a:not(.btn):hover::after,
+.main-nav a:not(.btn):focus-visible::after{
+  opacity:1;
+  background-size: var(--wave-w) var(--wave-h);
+}
+
+/* Accessibilité : réduire l’animation si demandé */
+@media (prefers-reduced-motion: reduce){
+  .main-nav a:not(.btn)::after{
+    transition: opacity .15s ease;
+  }
+  .main-nav a:not(.btn):hover::after,
+  .main-nav a:not(.btn):focus-visible::after{
+    opacity:1;
+    background-size: var(--wave-w) var(--wave-h);
+  }
+}
+
+/* Calques décoratifs par section (défilent, ne bloquent pas les clics) */
+.decor{
+  position: relative;      /* ancré au flux de la section */
+  pointer-events: none;
+  z-index: 0;
+}
+.section .decor,
+.hero .decor{ position: absolute; inset: 0; }
+
+/* Les icônes/images décoratives */
+.icon{ position: absolute; display: block; opacity: .9; }
+
+/* ---------- CIEL (dans .hero) ---------- */
+.hero{ position: relative; }
+.hero .decor.sky{ z-index: 0; }
+.icon.plane{
+  top: 6%; left: -20%;
+  width: clamp(160px, 24vw, 340px);
+  animation: planeAcross 22s linear infinite;
+}
+.banner{
+  position: absolute;
+  top: 10%; left: -12%;                 /* suit approximativement l’avion au départ */
+  transform: translateX(0);
+  padding: .28em .7em;
+  border-radius: 6px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  background: var(--teal);
+  color: #fff;
+  border: 2px solid var(--teal-dark);
+  animation: bannerFollow 22s linear infinite;
+  white-space: nowrap;
+}
+@keyframes planeAcross{
+  from{ transform: translateX(0) }
+  to  { transform: translateX(160%) }   /* traverse le hero */
+}
+@keyframes bannerFollow{
+  from{ transform: translateX(0) }
+  to  { transform: translateX(160%) }
+}
+
+/* Mouettes */
+.icon.gull{
+  width: clamp(36px, 4vw, 64px);
+  opacity:.75;
+  animation: gullFloat 8s ease-in-out infinite;
+}
+.g1{ top: 14%; left: 22%; animation-delay: .2s; }
+.g2{ top: 20%; left: 62%; animation-delay: 1s; }
+@keyframes gullFloat{
+  0%,100%{ transform: translateY(0) }
+  50%    { transform: translateY(-6px) }
+}
+
+/* ---------- MILIEU (étoiles + crabe) ---------- */
+#a-propos, #cartes{ position: relative; }
+#cartes .decor.mid{ inset: 0 0 -10% 0; }  /* un peu plus bas si souhaité */
+
+.icon.star{ width: clamp(28px, 3.2vw, 56px); }
+.icon.crab{ width: clamp(44px, 4.6vw, 72px); opacity:.9; }
+
+.s1{ top: 34%; left: 18%; transform: rotate(10deg); }
+.s2{ top: 46%; left: 66%; transform: rotate(-8deg); }
+#cartes .s3{ top: 12%; left: 72%; transform: rotate(14deg); }
+.icon.crab{ top: 40%; left: 44%; }
+
+/* ---------- BAS (seaux/pelles) ---------- */
+#reservation{ position: relative; }
+.icon.bucket{ width: clamp(48px, 5vw, 84px); }
+.b1{ bottom: 18%; left: 14%; transform: rotate(-6deg); }
+.b2{ bottom: 16%; right: 18%; transform: rotate(7deg); }
+
+/* ---------- TOUT EN BAS (parasols + transat) ---------- */
+.site-footer{ position: relative; }
+.decor.shore{
+  position: relative; width: 100%;
+  min-height: clamp(100px, 16vw, 200px);
+  margin-top: -24px;      /* remonter légèrement sur la plage */
+}
+.icon.parasol{ width: clamp(90px, 12vw, 180px); opacity:.95; }
+.icon.lounger{ width: clamp(120px, 14vw, 220px); opacity:.9; }
+
+.p1{ left: 6%;  bottom: 8%; }
+.p2{ right: 6%; bottom: 10%; transform: rotate(-2deg) }
+.icon.lounger{ left: 38%; bottom: 6%; }
+
+/* Respect des préférences utilisateur */
+@media (prefers-reduced-motion: reduce){
+  .icon.plane, .banner, .icon.gull{ animation: none; }
+}
+
+/* Allègement mobile */
+@media (max-width: 860px){
+  .icon.g2, .b2{ display:none; }
+  .icon.parasol{ opacity:.88 }
+}
+.banner{
+  /* …styles précédents… */
+  transform: translateX(0) rotate(-2.5deg);
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+}
+.icon.plane::after{
+  content:"";
+  position:absolute;
+  right:-10px; top: 50%;
+  width: 22px; height: 2px;
+  background: var(--teal-dark);       /* petite “corde” */
+  transform: translateY(-50%);
 }
