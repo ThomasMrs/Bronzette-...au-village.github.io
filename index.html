@@ -242,6 +242,41 @@
   <img class="modal-content" id="modal-img" alt="Carte">
   <div id="caption"></div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal     = document.getElementById('modal');
+    const modalImg  = document.getElementById('modal-img');
+    const caption   = document.getElementById('caption');
+    const closeBtn  = document.querySelector('.modal-close');
+
+    function openLightbox(src, title) {
+      modalImg.src = src;
+      caption.textContent = title || '';
+      modal.classList.add('open');
+    }
+
+    // Délégation d'événements : capte tout clic sur <a data-lightbox>
+    document.body.addEventListener('click', (e) => {
+      const link = e.target.closest('a[data-lightbox]');
+      if (!link) return;
+
+      e.preventDefault(); // empêche l’ouverture du lien
+      const cardTitle = link.closest('.card')?.querySelector('h4')?.textContent?.trim() || '';
+      openLightbox(link.getAttribute('href'), cardTitle);
+    });
+
+    // Fermeture
+    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+
+    // Accessibilité : échap pour fermer
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') modal.classList.remove('open');
+    });
+  });
+</script>
 
 </body>
 </html>
