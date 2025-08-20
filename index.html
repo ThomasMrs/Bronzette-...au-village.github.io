@@ -166,6 +166,55 @@
       <p class="note">*La carte peut varier selon la saison. Cocktails servis de juin à septembre.</p>
     </div>
   </section>
+  <!-- CARTES INTERACTIVES -->
+  <section id="carte-boissons" class="section alt">
+    <div class="container">
+      <h3 class="section-title">Boissons &amp; Apéritifs (TEST)</h3>
+
+      <div class="menu-controls">
+        <input id="search-drinks" class="menu-search" type="search" placeholder="Rechercher une boisson…" aria-label="Rechercher une boisson">
+        <div class="menu-filters" role="group" aria-label="Filtres">
+          <button class="btn btn-outline is-active" data-scope="drinks" data-filter="all">Tout</button>
+          <button class="btn btn-outline" data-scope="drinks" data-filter="softs">Softs</button>
+          <button class="btn btn-outline" data-scope="drinks" data-filter="aperitifs">Apéritifs</button>
+          <button class="btn btn-outline" data-scope="drinks" data-filter="cocktails">Cocktails</button>
+          <button class="btn btn-outline" data-scope="drinks" data-filter="bieres">Bières</button>
+          <button class="btn btn-outline" data-scope="drinks" data-filter="vins">Vins</button>
+          <button class="btn btn-outline" data-scope="drinks" data-filter="ptitdej">P’tit déj</button>
+        </div>
+        <div class="menu-actions">
+          <a class="btn btn-outline" href="Boissons.jpg" target="_blank" rel="noopener">Voir l’image complète</a>
+          <button class="btn btn-primary" data-print="#carte-boissons">Imprimer</button>
+        </div>
+      </div>
+
+      <div class="menu-grid" id="drinks-list" aria-live="polite" aria-busy="true"></div>
+    </div>
+  </section>
+
+  <section id="carte-plats" class="section">
+    <div class="container">
+      <h3 class="section-title">Carte — Entrées, Plats, Burgers, Poke bowls, Desserts (TEST)</h3>
+
+      <div class="menu-controls">
+        <input id="search-food" class="menu-search" type="search" placeholder="Rechercher un plat…" aria-label="Rechercher un plat">
+        <div class="menu-filters" role="group" aria-label="Filtres">
+          <button class="btn btn-outline is-active" data-scope="food" data-filter="all">Tout</button>
+          <button class="btn btn-outline" data-scope="food" data-filter="entrees">Entrées</button>
+          <button class="btn btn-outline" data-scope="food" data-filter="plats">Plats</button>
+          <button class="btn btn-outline" data-scope="food" data-filter="burgers">Burgers</button>
+          <button class="btn btn-outline" data-scope="food" data-filter="pokebowls">Poke bowls</button>
+          <button class="btn btn-outline" data-scope="food" data-filter="desserts">Desserts</button>
+        </div>
+        <div class="menu-actions">
+          <a class="btn btn-outline" href="Menu.jpg" target="_blank" rel="noopener">Voir l’image complète</a>
+          <button class="btn btn-primary" data-print="#carte-plats">Imprimer</button>
+        </div>
+      </div>
+
+      <div class="menu-grid" id="food-list" aria-live="polite" aria-busy="true"></div>
+    </div>
+  </section>
 
   <!-- HORAIRES -->
   <section id="horaires" class="section">

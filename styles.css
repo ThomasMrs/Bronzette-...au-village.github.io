@@ -232,3 +232,36 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   * { scroll-behavior:auto !important; }
   .btn-social:hover{ transform:none; }
 }
+
+
+
+/* Carte interactive — réutilise le thème existant */
+.menu-controls{
+  display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin:10px 0 14px;
+}
+.menu-search{ flex:1 1 280px; padding:12px 14px; border:1px solid #dcd6ce; border-radius:10px; font:inherit }
+.menu-filters{ display:flex; flex-wrap:wrap; gap:8px }
+.menu-filters .btn{ padding:10px 12px }
+.menu-filters .is-active{ background:var(--teal); color:#fff; border-color:var(--teal); }
+.menu-actions{ display:flex; gap:8px }
+
+.menu-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px }
+.menu-item{
+  background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:14px 14px 12px; display:grid; gap:8px;
+}
+.menu-item .head{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px }
+.menu-item .title{ font-weight:800; line-height:1.2 }
+.menu-item .price{ font-weight:800; color:var(--teal-dark); white-space:nowrap }
+.menu-item .desc{ margin:0; opacity:.9; line-height:1.5 }
+.menu-item .tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:4px }
+.tag{
+  font-size:.82rem; line-height:1; padding:6px 8px; border-radius:999px; background:rgba(33,191,200,.12); color:var(--teal-dark);
+  border:1px solid rgba(20,154,162,.25);
+}
+.tag.seasonal{ background:#fff3cd; border-color:#ffe08a; color:#8a6d00 }
+.tag.new{ background:#eaf8f1; border-color:#b8e7cf; color:#256149 }
+
+@media (max-width: 720px){
+  .menu-actions{ width:100%; justify-content:flex-end }
+}

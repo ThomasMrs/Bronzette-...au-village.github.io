@@ -1,0 +1,24 @@
+[
+  { "title": "Œufs bio mayonnaise", "price": 5.90, "category": "entrees" },
+  { "title": "Salade de cabécou", "price": 6.90, "category": "entrees" },
+  { "title": "Assiette de charcuteries", "price": 8.90, "category": "entrees" },
+
+  { "title": "Bavette à l’échalote", "price": 18.90, "category": "plats" },
+  { "title": "Gambas à la planxa", "price": 16.90, "category": "plats" },
+  { "title": "Salade de cabécou (plat)", "price": 15.90, "category": "plats" },
+
+  { "title": "Classic Cheese, sans chichi", "price": 15.90, "category": "burgers", "desc": "Pain artisanal, steak du boucher, salade, tomate, cheddar, sauce big burger" },
+  { "title": "KE FAS", "price": 16.90, "category": "burgers", "desc": "Steak du boucher, salade, tomate, oignons caramélisés, manchego, chips de chorizo, aïoli" },
+  { "title": "What the F***", "price": 17.90, "category": "burgers", "desc": "Steak du boucher, salade, tomate, oignons à la planxa, poitrine de porc, œuf, cheddar, sauce poivre" },
+  { "title": "Maître Corbeau", "price": 18.90, "category": "burgers", "desc": "Steak du boucher, œuf, salade, tomates séchées, poitrine de porc, morbier, crispy’s d’oignons, sauce moutarde à l’ancienne miel" },
+
+  { "title": "Poke bowl — Cocotte", "price": 15.90, "category": "pokebowls", "desc": "Riz, tomates cerises, croustillant de poulet, roquette, œuf, parmesan, flocons d’avoine, sauce césar" },
+  { "title": "Poke bowl — Végé", "price": 15.90, "category": "pokebowls", "desc": "Riz, roquette, chou rouge, carotte, tomates séchées, mangue, œuf, crispy’s d’oignons, vinaigrette balsamique" },
+  { "title": "Poke bowl — Thaï", "price": 16.90, "category": "pokebowls", "desc": "Riz, gambas, mangue, chou rouge, carotte, tomates cerises, roquette, haricots mungo, graines de sésame, sauce thaï" },
+
+  { "title": "Panna cotta du moment", "price": 5.90, "category": "desserts" },
+  { "title": "Crème brûlée", "price": 6.90, "category": "desserts" },
+  { "title": "Pastis gascon et sa boule de glace", "price": 8.90, "category": "desserts" },
+  { "title": "Café gourmand", "price": 8.90, "category": "desserts" },
+  { "title": "Assiette de fromages", "price": 7.90, "category": "desserts" }
+]

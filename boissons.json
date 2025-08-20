@@ -1,0 +1,26 @@
+[
+  { "title": "Coca-Cola 33cl", "price": 3.80, "category": "softs" },
+  { "title": "Thé glacé 25cl", "price": 3.80, "category": "softs" },
+  { "title": "Orangina 25cl", "price": 3.80, "category": "softs" },
+  { "title": "Schweppes Agrumes 25cl", "price": 3.80, "category": "softs" },
+  { "title": "Oasis Tropical 25cl", "price": 3.50, "category": "softs" },
+  { "title": "Jus de fruits 25cl (pomme, ananas, orange…)", "price": 3.50, "category": "softs" },
+
+  { "title": "Banyuls rouge 10cl", "price": 3.50, "category": "aperitifs" },
+  { "title": "Muscat de Rivesaltes 10cl", "price": 3.50, "category": "aperitifs" },
+  { "title": "Ricard 2cl", "price": 3.00, "category": "aperitifs" },
+
+  { "title": "Cocktail Bronzette", "price": 7.50, "category": "cocktails", "tags": ["Saisonnier (juin–sept.)"] },
+  { "title": "Virgin Mojito", "price": 5.50, "category": "cocktails", "tags": ["Saisonnier (juin–sept.)"] },
+  { "title": "Aperol Spritz", "price": 7.00, "category": "cocktails", "tags": ["Saisonnier (juin–sept.)"] },
+
+  { "title": "Bière pression 25cl", "price": 3.50, "category": "bieres" },
+  { "title": "Pinte 50cl", "price": 5.90, "category": "bieres" },
+  { "title": "Leffe blonde 25cl", "price": 2.80, "category": "bieres" },
+
+  { "title": "Cuvée Bronzette 75cl", "price": 15.00, "category": "vins" },
+  { "title": "Vins au pichet 25cl", "price": 4.50, "category": "vins" },
+
+  { "title": "Formule p’tit déj sucré", "price": 6.90, "category": "ptitdej", "desc": "Boisson chaude + jus d’orange, pain, beurre, confiture" },
+  { "title": "Formule p’tit déj salé", "price": 7.90, "category": "ptitdej", "desc": "Boisson chaude + jus d’orange, œuf au plat, jambon, manchego" }
+]
