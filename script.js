@@ -5,7 +5,7 @@ const HOURS = [
   { day: 'Mercredi', open: '08:00', close: '21:00', note: '(jour de marché)' },
   { day: 'Jeudi', open: '09:00', close: '21:00' },
   { day: 'Vendredi', open: '09:00', close: '21:00' },
-  { day: 'Samedi', open: '08:00', close: '21:00', note: '(jour de marché)' },
+  { day: 'Samedi', open: '08:00', close: '21:00' },
   { day: 'Dimanche', open: '09:00', close: '12:00' }
 ];
 
@@ -74,9 +74,7 @@ function isToday(label) {
   });
 
   // Échap pour fermer
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMenu();
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
   // Clic en dehors pour fermer
   document.addEventListener('click', e => {
@@ -123,34 +121,10 @@ function isToday(label) {
     });
   });
 
-  // Si l’URL contient déjà un hash au chargement
   if (location.hash) {
     const id = location.hash.replace('#','');
-    // petit délai pour laisser le layout se stabiliser
     setTimeout(() => scrollToTarget(id), 50);
   }
-})();
-
-/* ---------- Formulaire de réservation ---------- */
-(function reservationForm(){
-  const form = document.getElementById('reservationForm');
-  if (!form) return;
-
-  // Empêcher sélection d'une date passée
-  const todayISO = new Date().toISOString().slice(0,10);
-  form.elements['date']?.setAttribute('min', todayISO);
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    if (!form.reportValidity()) return;
-
-    const data = Object.fromEntries(new FormData(form).entries());
-    console.log('Réservation envoyée :', data);
-    alert('Merci ! Votre demande de réservation a été enregistrée.');
-    form.reset();
-    form.elements['covers'].value = '2';
-  });
 })();
 
 /* ---------- Année dynamique ---------- */
@@ -164,14 +138,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.querySelector('.modal-close');
   let lastFocus  = null;
 
+  function getFocusable(node){
+    return Array.from(
+      node.querySelectorAll(
+        'a, button, input, textarea, select, summary, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+  }
+
   function openLightbox(src, title, trigger) {
     lastFocus = trigger || document.activeElement;
     modalImg.src = src;
     modalImg.alt = title || '';
     caption.textContent = title || '';
+
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('no-scroll');
+
     closeBtn.focus();
   }
   function closeLightbox() {
@@ -179,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'true');
     modalImg.removeAttribute('src');
     modalImg.removeAttribute('alt');
-    document.body.style.overflow = '';
+    document.body.classList.remove('no-scroll');
     lastFocus?.focus();
   }
 
@@ -199,12 +183,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
 
-    // Piège de focus minimal (Tab)
+    // Piège de focus (Tab) robuste
     if (e.key === 'Tab' && modal.classList.contains('open')) {
-      const focusables = [closeBtn, modalImg];
+      const focusables = getFocusable(modal);
+      if (!focusables.length) return;
       const first = focusables[0], last = focusables[focusables.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
 });

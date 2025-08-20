@@ -31,12 +31,12 @@
   <meta property="og:image" content="logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- (Optionnel) Politique CSP via meta — privilégier un en-tête HTTP côté serveur -->
+  <!-- CSP (idéalement en en-tête HTTP côté serveur) -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     img-src 'self' data: https:;
     script-src 'self';
-    style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+    style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
     font-src  'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com data:;
     frame-src https://www.google.com;
     connect-src 'self';
@@ -81,16 +81,8 @@
 </header>
 
 <main>
-  <!-- HERO (haut : avion + banderole, mouettes) -->
+  <!-- HERO -->
   <section class="hero">
-    <!-- décor de ciel (défile avec la section) -->
-    <!-- <div class="decor sky" aria-hidden="true">
-      <img class="icon plane" src="/assets/plane.png" alt="" loading="lazy">
-      <span class="banner">BRONZETTE</span>
-      <img class="icon gull g1" src="/assets/seagull1.png" alt="" loading="lazy">
-      <img class="icon gull g2" src="/assets/seagull2.png" alt="" loading="lazy">
-    </div> -->
-
     <div class="container hero-inner">
       <div class="hero-text">
         <h2>Bienvenue à <span class="accent">Bronzette</span></h2>
@@ -104,14 +96,8 @@
     </div>
   </section>
 
-  <!-- À PROPOS (+ décor milieu : étoiles de mer, crabe) -->
+  <!-- À PROPOS -->
   <section id="a-propos" class="section">
-    <!-- <div class="decor mid" aria-hidden="true">
-      <img class="icon star s1" src="/assets/starfish1.png" alt="" loading="lazy">
-      <img class="icon crab"  src="/assets/crab.png"       alt="" loading="lazy">
-      <img class="icon star s2" src="/assets/starfish2.png" alt="" loading="lazy">
-    </div> -->
-
     <div class="container grid-2">
       <div>
         <h3 class="section-title">À propos</h3>
@@ -129,19 +115,16 @@
       </figure>
     </div>
   </section>
-<!-- Lightbox / Modale (à placer avant </body>) -->
-<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Agrandissement de l’image">
-  <button type="button" class="modal-close" aria-label="Fermer la modale">&times;</button>
-  <img id="modal-img" class="modal-content" alt="">
-  <div id="caption" aria-live="polite"></div>
-</div>
 
-  <!-- CARTES (+ décor complémentaire) -->
+  <!-- Lightbox / Modale -->
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Agrandissement de l’image">
+    <button type="button" class="modal-close" aria-label="Fermer la modale">&times;</button>
+    <img id="modal-img" class="modal-content" alt="">
+    <div id="caption" aria-live="polite"></div>
+  </div>
+
+  <!-- CARTES -->
   <section id="cartes" class="section alt">
-    <!-- <div class="decor mid" aria-hidden="true">
-      <img class="icon star s3" src="/assets/starfish3.png" alt="" loading="lazy">
-    </div> -->
-
     <div class="container">
       <h3 class="section-title">Nos cartes</h3>
       <p>Boissons, apéritifs, p’tit déj, burgers, poke bowls, desserts et suggestions du moment.</p>
@@ -188,25 +171,20 @@
   <section id="horaires" class="section">
     <div class="container">
       <h3 class="section-title">Horaires</h3>
-      <div class="hours" id="hoursContainer">
+      <div class="hours" id="hoursContainer" role="region" aria-live="polite" aria-label="Horaires du restaurant">
         <!-- Rendu dynamique par script.js -->
       </div>
     </div>
   </section>
 
-  <!-- RÉSERVATION (+ décor bas : seaux/pelles) -->
+  <!-- RÉSERVATION (coordonnées) -->
   <section id="reservation" class="section alt">
-    <!-- <div class="decor beach" aria-hidden="true">
-      <img class="icon bucket b1" src="/assets/bucket1.png" alt="" loading="lazy">
-      <img class="icon bucket b2" src="/assets/bucket2.png" alt="" loading="lazy">
-    </div> -->
-
     <div class="container grid-2">
       <div>
         <h3 class="section-title">Réserver</h3>
-        <p>Contactez-nous par téléphone ; nous confirmons la disponibilité rapidement.</p>
+        <p>Contactez-nous par téléphone&nbsp;;&nbsp;nous confirmons la disponibilité rapidement.</p>
         <ul class="contact-list">
-          <li>Téléphone : <a href="tel:+33468628543">+33 4 68 62 85 43</a></li>
+          <li>Téléphone : <a href="tel:+33468628543">+33&nbsp;4&nbsp;68&nbsp;62&nbsp;85&nbsp;43</a></li>
           <li>Adresse : 36 Rue de la Libération, 66700 Argelès-sur-Mer</li>
         </ul>
       </div>
@@ -237,14 +215,13 @@
             <span class="sr-only">Instagram</span>
           </a>
 
-        <a class="btn-social google"
-          aria-label="Google — Bronzette"
-          href="https://share.google/c5XbMR64Ns7Eht9sE"
-          target="_blank" rel="noopener noreferrer">
-          <img src="google.png" alt="Google" class="icon-google">
-          <span class="sr-only">Google</span>
-        </a>
-
+          <a class="btn-social google"
+             aria-label="Google — Bronzette"
+             href="https://share.google/c5XbMR64Ns7Eht9sE"
+             target="_blank" rel="noopener noreferrer">
+            <img src="google.png" alt="" class="icon-google" aria-hidden="true">
+            <span class="sr-only">Google</span>
+          </a>
         </div>
       </div>
 
@@ -267,13 +244,6 @@
       </div>
     </div>
   </section>
-
-  <!-- TOUT EN BAS (parasols + transat) -->
-  <!-- <div class="decor shore" aria-hidden="true">
-    <img class="icon parasol p1" src="/assets/parasol1.png"  alt="" loading="lazy">
-    <img class="icon lounger"    src="/assets/lounger.png"   alt="" loading="lazy">
-    <img class="icon parasol p2" src="/assets/parasol2.png"  alt="" loading="lazy">
-  </div> -->
 </main>
 
 <footer class="site-footer">

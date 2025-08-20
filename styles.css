@@ -1,10 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Allison+Script&display=swap');
-
-.logo-script {
-  font-family: 'Allison Script', cursive;
-}
-
-
 /* Thème sable & lagon */
 :root{
   --teal:#21bfc8;
@@ -14,18 +7,16 @@
   --white:#ffffff;
   --shadow:0 10px 25px rgba(0,0,0,.08);
   --radius:16px;
+
+  /* soulignement vague */
+  --wave-w:56px;
+  --wave-h:10px;
 }
 
-.logo-script a {
-  color: inherit;
-  text-decoration: none;
-}
-.logo-script a:hover,
-.logo-script a:focus-visible {
-  text-decoration: none;
-  color: var(--teal-dark);
-}
-
+/* Police de marque chargée via <link> Google Fonts */
+.logo-script { font-family:'Allison', cursive; }
+.logo-script a { color:inherit; text-decoration:none; }
+.logo-script a:hover, .logo-script a:focus-visible { color:var(--teal-dark); }
 
 html,body{height:100%}
 body{
@@ -37,11 +28,14 @@ body{
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path fill="%23f7f2ea" d="M0 0h8v8H0z"/></svg>') repeat;
 }
 
+/* bloquer le scroll quand la modale est ouverte (évite inline style) */
+body.no-scroll { overflow:hidden; }
+
 .container { width:min(1100px, 92%); margin-inline:auto; }
 .section { padding:72px 0; }
 .section.alt { background:var(--sand); }
 .section-title {
-  font-family: Montserrat, sans-serif;
+  font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight:800; letter-spacing:.4px;
   font-size: clamp(1.6rem, 2vw + 1rem, 2.1rem);
   margin:0 0 12px 0;
@@ -49,17 +43,14 @@ body{
 p { line-height:1.6; }
 
 /* Lien d’évitement */
-.skip-link{
-  position:absolute; left:-9999px; top:auto;
-}
+.skip-link{ position:absolute; left:-9999px; top:auto; }
 .skip-link:focus-visible{
   left:16px; top:16px; background:#fff; padding:10px 14px; border-radius:8px; box-shadow:var(--shadow);
 }
 
 /* Focus visible global */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline:3px solid #7fdfe5;
-  outline-offset:2px;
+  outline:3px solid #7fdfe5; outline-offset:2px;
 }
 
 /* Header */
@@ -70,12 +61,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .header-inner{display:flex; align-items:center; justify-content:space-between; gap:24px; padding:14px 0}
 .logo-script{
-  font-family: Allison, cursive;
   font-size: clamp(2.2rem, 4vw + 1rem, 3.6rem);
   color: var(--teal-dark);
   margin:0; line-height:1;
 }
-.logo-script .thin{font-weight:400; font-family: Montserrat, sans-serif; font-size:.42em; margin-left:.2em}
+.logo-script .thin{font-weight:400; font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:.42em; margin-left:.2em}
 .baseline{margin:.15rem 0 0 2px; font-weight:600; color:var(--ink)}
 
 .main-nav ul{display:flex; list-style:none; gap:18px; margin:0; padding:0; align-items:center}
@@ -142,24 +132,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .card-icon img{display:block; max-width:70%; max-height:70%; object-fit:contain}
 .card .card-body{ padding-top:14px }
 
-/* Formulaire */
-.form{display:grid; gap:10px; padding:18px}
-.form label{display:grid; gap:6px; font-weight:600}
-.form input,.form textarea{padding:12px 14px; border:1px solid #dcd6ce; border-radius:10px; font:inherit}
-.form button{margin-top:6px}
-
-/* Divers */
-.checks{padding-left:18px}
-.checks li{margin:6px 0}
-.map-embed{display:flex; align-items:center; justify-content:center; min-height:260px}
-.map-embed iframe{width:100%; height:320px; border:0}
-.map-placeholder{opacity:.6}
-.socials a{margin-right:12px}
-.site-footer{padding:28px 0; background: linear-gradient(0deg, var(--sand), rgba(255,255,255,0))}
-.footer-inner{display:flex; gap:16px; justify-content:space-between; align-items:center; flex-wrap:wrap}
-.footer-inner a{margin-left:12px; color:inherit; text-decoration:none}
-
-/* Badges sociaux ronds */
+/* Boutons sociaux */
 .socials{display:flex; align-items:center; gap:12px}
 .btn-social{
   --size:48px;
@@ -182,29 +155,43 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
 
-/* Style de base du bouton rond */
-.btn-social.google {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;              /* même taille que tes autres boutons */
-  height: 50px;
-  border-radius: 50%;
-  background: #fff;         /* blanc au lieu du gris si tu veux mettre en valeur le logo */
-  overflow: hidden;
-}
-
-/* Image Google bien centrée et plus grande */
-.btn-social img.icon-google {
-  width: 60%;              /* prend 60% de la largeur du bouton */
-  height: 60%;
-  object-fit: contain;
-}
-
+/* Bouton Google avec image centrée */
+.btn-social.google{ width:48px; height:48px; background:#fff; }
+.btn-social img.icon-google{ width:60%; height:60%; object-fit:contain; }
 
 .sr-only{
   position:absolute !important; width:1px; height:1px;
   padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* Divers */
+.checks{padding-left:18px}
+.checks li{margin:6px 0}
+.map-embed{display:flex; align-items:center; justify-content:center; min-height:260px}
+.map-embed iframe{width:100%; height:320px; border:0}
+.socials a{margin-right:12px}
+.site-footer{padding:28px 0; background: linear-gradient(0deg, var(--sand), rgba(255,255,255,0))}
+.footer-inner{display:flex; gap:16px; justify-content:space-between; align-items:center; flex-wrap:wrap}
+.footer-inner a{margin-left:12px; color:inherit; text-decoration:none}
+
+/* Soulignement vague dans la nav (sauf bouton) */
+.main-nav a:not(.btn){ position:relative; padding-bottom:16px; }
+.main-nav a.btn::after{ content:none; }
+.main-nav a:not(.btn)::after{
+  content:""; position:absolute; left:0; bottom:0;
+  width:var(--wave-w); height:var(--wave-h);
+  opacity:0; overflow:hidden; pointer-events:none;
+  background-image:url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="10" viewBox="0 0 56 10">\
+<path d="M0 7 C 6 7 6 3 12 3 S 18 7 24 7 30 3 36 3 42 7 48 7 54 3 56 3" fill="none" stroke="%2321bfc8" stroke-width="2" stroke-linecap="round"/>\
+</svg>');
+  background-repeat:no-repeat; background-position:left bottom;
+  background-size: 0 var(--wave-h);
+  transition: background-size .55s ease-out, opacity .15s ease .1s;
+}
+.main-nav a:not(.btn):hover::after,
+.main-nav a:not(.btn):focus-visible::after{
+  opacity:1; background-size: var(--wave-w) var(--wave-h);
 }
 
 /* Mobile */
@@ -222,219 +209,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Lightbox / Modale */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  inset: 0;
-  padding-top: 60px;
-  background-color: rgba(20,33,39,0.8);
-  backdrop-filter: blur(6px);
+  display:none; position:fixed; z-index:1000; inset:0; padding-top:60px;
+  background-color: rgba(20,33,39,0.8); backdrop-filter: blur(6px);
 }
-.modal.open { display: block; }
-
+.modal.open { display:block; }
 .modal-content {
-  display: block;
-  margin: auto;
-  max-width: 90%;
-  max-height: 85vh;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  background: var(--white);
-  padding: 10px;
+  display:block; margin:auto; max-width:90%; max-height:85vh;
+  border-radius:var(--radius); box-shadow:var(--shadow); background:var(--white); padding:10px;
 }
-
 .modal-close {
-  position: absolute;
-  top: 20px; right: 30px;
-  color: var(--white);
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  line-height: 1;
+  position:absolute; top:20px; right:30px; color:var(--white);
+  font-size:40px; font-weight:bold; cursor:pointer; background:transparent; border:0; line-height:1;
   transition: color .2s;
 }
 .modal-close:hover { color: var(--teal); }
-
 #caption {
-  margin: 15px auto 0;
-  text-align: center;
-  color: var(--white);
-  font-size: 1.1rem;
-  max-width: 80%;
+  margin: 15px auto 0; text-align: center; color: var(--white); font-size: 1.1rem; max-width: 80%;
 }
 
-/* Préférences utilisateur : réduire les animations */
+/* Réduire les animations si demandé */
 @media (prefers-reduced-motion: reduce){
-  * { scroll-behavior: auto !important; }
+  * { scroll-behavior:auto !important; }
   .btn-social:hover{ transform:none; }
-}
-
-:root{
-  --wave-w: 56px;        /* largeur de la vague */
-  --wave-h: 10px;        /* hauteur */
-}
-
-/* Vague uniquement sur les liens de nav NON boutons */
-.main-nav a:not(.btn){
-  position: relative;
-  padding-bottom: 16px;
-}
-
-/* Sécurité : aucune vague sur le bouton .btn même s’il restait un style plus haut */
-.main-nav a.btn::after{
-  content: none;
-}
-
-/* Vague : révélation de gauche à droite, bleu #21bfc8 (== var(--teal)) */
-.main-nav a:not(.btn)::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:var(--wave-w);
-  height:var(--wave-h);
-  opacity:0;
-  overflow:hidden;
-  pointer-events:none;
-
-  background-image:url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="56" height="10" viewBox="0 0 56 10">\
-<path d="M0 7 C 6 7 6 3 12 3 S 18 7 24 7 30 3 36 3 42 7 48 7 54 3 56 3" fill="none" stroke="%2321bfc8" stroke-width="2" stroke-linecap="round"/>\
-</svg>');
-  background-repeat:no-repeat;
-  background-position:left bottom;
-  background-size: 0 var(--wave-h);        /* se révèle en largeur */
-  transition: background-size .55s ease-out, opacity .15s ease .1s;
-}
-
-.main-nav a:not(.btn):hover::after,
-.main-nav a:not(.btn):focus-visible::after{
-  opacity:1;
-  background-size: var(--wave-w) var(--wave-h);
-}
-
-/* Accessibilité : réduire l’animation si demandé */
-@media (prefers-reduced-motion: reduce){
-  .main-nav a:not(.btn)::after{
-    transition: opacity .15s ease;
-  }
-  .main-nav a:not(.btn):hover::after,
-  .main-nav a:not(.btn):focus-visible::after{
-    opacity:1;
-    background-size: var(--wave-w) var(--wave-h);
-  }
-}
-
-/* Calques décoratifs par section (défilent, ne bloquent pas les clics) */
-.decor{
-  position: relative;      /* ancré au flux de la section */
-  pointer-events: none;
-  z-index: 0;
-}
-.section .decor,
-.hero .decor{ position: absolute; inset: 0; }
-
-/* Les icônes/images décoratives */
-.icon{ position: absolute; display: block; opacity: .9; }
-
-/* ---------- CIEL (dans .hero) ---------- */
-.hero{ position: relative; }
-.hero .decor.sky{ z-index: 0; }
-.icon.plane{
-  top: 6%; left: -20%;
-  width: clamp(160px, 24vw, 340px);
-  animation: planeAcross 22s linear infinite;
-}
-.banner{
-  position: absolute;
-  top: 10%; left: -12%;                 /* suit approximativement l’avion au départ */
-  transform: translateX(0);
-  padding: .28em .7em;
-  border-radius: 6px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  background: var(--teal);
-  color: #fff;
-  border: 2px solid var(--teal-dark);
-  animation: bannerFollow 22s linear infinite;
-  white-space: nowrap;
-}
-@keyframes planeAcross{
-  from{ transform: translateX(0) }
-  to  { transform: translateX(160%) }   /* traverse le hero */
-}
-@keyframes bannerFollow{
-  from{ transform: translateX(0) }
-  to  { transform: translateX(160%) }
-}
-
-/* Mouettes */
-.icon.gull{
-  width: clamp(36px, 4vw, 64px);
-  opacity:.75;
-  animation: gullFloat 8s ease-in-out infinite;
-}
-.g1{ top: 14%; left: 22%; animation-delay: .2s; }
-.g2{ top: 20%; left: 62%; animation-delay: 1s; }
-@keyframes gullFloat{
-  0%,100%{ transform: translateY(0) }
-  50%    { transform: translateY(-6px) }
-}
-
-/* ---------- MILIEU (étoiles + crabe) ---------- */
-#a-propos, #cartes{ position: relative; }
-#cartes .decor.mid{ inset: 0 0 -10% 0; }  /* un peu plus bas si souhaité */
-
-.icon.star{ width: clamp(28px, 3.2vw, 56px); }
-.icon.crab{ width: clamp(44px, 4.6vw, 72px); opacity:.9; }
-
-.s1{ top: 34%; left: 18%; transform: rotate(10deg); }
-.s2{ top: 46%; left: 66%; transform: rotate(-8deg); }
-#cartes .s3{ top: 12%; left: 72%; transform: rotate(14deg); }
-.icon.crab{ top: 40%; left: 44%; }
-
-/* ---------- BAS (seaux/pelles) ---------- */
-#reservation{ position: relative; }
-.icon.bucket{ width: clamp(48px, 5vw, 84px); }
-.b1{ bottom: 18%; left: 14%; transform: rotate(-6deg); }
-.b2{ bottom: 16%; right: 18%; transform: rotate(7deg); }
-
-/* ---------- TOUT EN BAS (parasols + transat) ---------- */
-.site-footer{ position: relative; }
-.decor.shore{
-  position: relative; width: 100%;
-  min-height: clamp(100px, 16vw, 200px);
-  margin-top: -24px;      /* remonter légèrement sur la plage */
-}
-.icon.parasol{ width: clamp(90px, 12vw, 180px); opacity:.95; }
-.icon.lounger{ width: clamp(120px, 14vw, 220px); opacity:.9; }
-
-.p1{ left: 6%;  bottom: 8%; }
-.p2{ right: 6%; bottom: 10%; transform: rotate(-2deg) }
-.icon.lounger{ left: 38%; bottom: 6%; }
-
-/* Respect des préférences utilisateur */
-@media (prefers-reduced-motion: reduce){
-  .icon.plane, .banner, .icon.gull{ animation: none; }
-}
-
-/* Allègement mobile */
-@media (max-width: 860px){
-  .icon.g2, .b2{ display:none; }
-  .icon.parasol{ opacity:.88 }
-}
-.banner{
-  /* …styles précédents… */
-  transform: translateX(0) rotate(-2.5deg);
-  box-shadow: 0 6px 16px rgba(0,0,0,.12);
-}
-.icon.plane::after{
-  content:"";
-  position:absolute;
-  right:-10px; top: 50%;
-  width: 22px; height: 2px;
-  background: var(--teal-dark);       /* petite “corde” */
-  transform: translateY(-50%);
 }
