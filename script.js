@@ -195,50 +195,77 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* ===== Cartes interactives ===== */
+/* ===== Cartes interactives (recherche robuste, sans impression) ===== */
 
-// Endpoints JSON (placez les fichiers à la racine ou dans /data/)
-const DRINKS_JSON_URL = 'boissons.json';
-const FOOD_JSON_URL   = 'plats.json';
+// Détermine des URLs robustes, même si le site est servi depuis /<repo> sur GitHub Pages
+const baseURL = new URL('.', location.href);
+const DRINKS_JSON_URL = new URL('boissons.json', baseURL).href;
+const FOOD_JSON_URL   = new URL('plats.json', baseURL).href;
 
 async function fetchJSON(url){
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Impossible de charger ${url}`);
+  // no-cache pour éviter un ancien JSON en production (GitHub Pages)
+  const res = await fetch(url, { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`Échec de chargement: ${url} (${res.status})`);
   return res.json();
 }
 
-function normalize(str){ return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+// Normalisation très tolérante (accents, ponctuation, espaces)
+function normalize(str){
+  return (str || '')
+    .toString()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')   // accents
+    .toLowerCase()
+    .replace(/[^\w\s€%.-]/g, ' ')                       // ponctuation exotique
+    .replace(/\s+/g, ' ')                               // espaces multiples
+    .trim();
+}
+
+function euro(val){
+  // accepte nombre ou chaîne
+  const n = typeof val === 'number' ? val : Number(String(val).replace(',', '.'));
+  if (Number.isFinite(n)) return `${n.toFixed(2).replace('.', ',')} €`;
+  return ''; // prix optionnel
+}
 
 function renderMenu(listEl, items){
   listEl.innerHTML = '';
   const frag = document.createDocumentFragment();
+
+  if (!items.length){
+    const p = document.createElement('p');
+    p.className = 'note';
+    p.textContent = 'Aucun résultat pour cette recherche.';
+    listEl.appendChild(p);
+    return;
+  }
+
   items.forEach(it => {
     const card = document.createElement('article');
     card.className = 'menu-item';
-    card.dataset.category = it.category; // ex: softs, aperitifs, burgers, etc.
+    if (it.category) card.dataset.category = it.category;
 
     const head = document.createElement('div');
     head.className = 'head';
 
     const title = document.createElement('div');
     title.className = 'title';
-    title.textContent = it.title;
+    title.textContent = it.title || '';
 
     const price = document.createElement('div');
     price.className = 'price';
-    price.textContent = it.price ? `${Number(it.price).toFixed(2).replace('.', ',')} €` : '';
+    price.textContent = euro(it.price);
 
     head.append(title, price);
 
     const desc = document.createElement('p');
     desc.className = 'desc';
-    desc.textContent = it.desc || '';
+    if (it.desc) desc.textContent = it.desc;
 
     const tags = document.createElement('div');
     tags.className = 'tags';
     (it.tags || []).forEach(t => {
       const span = document.createElement('span');
-      span.className = 'tag' + (t === 'Saisonnier' ? ' seasonal' : t === 'Nouveau' ? ' new' : '');
+      span.className = 'tag' + (t.toLowerCase().includes('saison') ? ' seasonal' : t.toLowerCase().includes('nouve') ? ' new' : '');
       span.textContent = t;
       tags.appendChild(span);
     });
@@ -248,6 +275,7 @@ function renderMenu(listEl, items){
     if ((it.tags || []).length) card.append(tags);
     frag.appendChild(card);
   });
+
   listEl.appendChild(frag);
 }
 
@@ -255,40 +283,31 @@ function bindControls(scope, listEl, data){
   const search = document.getElementById(`search-${scope}`);
   const btns = Array.from(document.querySelectorAll(`[data-scope="${scope}"][data-filter]`));
 
-  function apply(){
+  // Filtrage + recherche
+  const apply = () => {
     const q = normalize(search.value);
     const active = btns.find(b => b.classList.contains('is-active'))?.dataset.filter || 'all';
+
     const filtered = data.filter(it => {
-      const matchText = !q || normalize(it.title + ' ' + (it.desc || '')).includes(q);
+      const hay = normalize(`${it.title||''} ${it.desc||''} ${(it.tags||[]).join(' ')}`);
+      const matchText = !q || hay.includes(q);
       const matchCat = active === 'all' || it.category === active;
       return matchText && matchCat;
     });
-    renderMenu(listEl, filtered);
-  }
 
-  search.addEventListener('input', apply);
+    renderMenu(listEl, filtered);
+  };
+
+  // Activation du bon filtre
   btns.forEach(b => b.addEventListener('click', () => {
     btns.forEach(x => x.classList.remove('is-active'));
     b.classList.add('is-active');
     apply();
   }));
 
-  // Impression ciblée
-  document.querySelectorAll(`[data-print="#${listEl.closest('section').id}"]`).forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-print').replace('#','');
-      const section = document.getElementById(id);
-      if (!section) return window.print();
-      const w = window.open('', 'PRINT', 'height=700,width=900');
-      const cssLinks = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
-        .map(l => `<link rel="stylesheet" href="${l.href}">`).join('');
-      w.document.write(`
-        <html><head><title>${document.title}</title>${cssLinks}<style>
-          body{padding:20px} .site-header,.site-footer{display:none} .menu-controls{display:none}
-        </style></head>
-        <body>${section.outerHTML}</body></html>`);
-      w.document.close(); w.focus(); w.print(); w.close();
-    });
+  // Recherche : saisir / coller / effacer (icône "X" des champs search)
+  ['input','change','search'].forEach(evt => {
+    search.addEventListener(evt, apply);
   });
 
   apply();
@@ -300,15 +319,21 @@ function bindControls(scope, listEl, data){
   if (!drinksList || !foodList) return;
 
   try{
-    const [drinks, food] = await Promise.all([fetchJSON(DRINKS_JSON_URL), fetchJSON(FOOD_JSON_URL)]);
-    drinksList.setAttribute('aria-busy','false');
-    foodList.setAttribute('aria-busy','false');
+    const [drinks, food] = await Promise.all([
+      fetchJSON(DRINKS_JSON_URL),
+      fetchJSON(FOOD_JSON_URL)
+    ]);
 
-    bindControls('drinks', drinksList, drinks);
-    bindControls('food',   foodList,   food);
+    bindControls('drinks', drinksList, Array.isArray(drinks) ? drinks : []);
+    bindControls('food',   foodList,   Array.isArray(food)   ? food   : []);
   }catch(e){
     console.error(e);
     drinksList.innerHTML = `<p class="note">Impossible de charger la carte des boissons. <a href="Boissons.jpg" target="_blank" rel="noopener">Voir l’image</a>.</p>`;
     foodList.innerHTML   = `<p class="note">Impossible de charger la carte des plats. <a href="Menu.jpg" target="_blank" rel="noopener">Voir l’image</a>.</p>`;
+  }finally{
+    drinksList.setAttribute('aria-live','polite');
+    drinksList.setAttribute('aria-busy','false');
+    foodList.setAttribute('aria-live','polite');
+    foodList.setAttribute('aria-busy','false');
   }
 })();
