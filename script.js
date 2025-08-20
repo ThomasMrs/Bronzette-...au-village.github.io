@@ -337,3 +337,25 @@ function bindControls(scope, listEl, data){
     foodList.setAttribute('aria-busy','false');
   }
 })();
+
+// Intercepte tout clic sur <a data-lightbox>
+document.body.addEventListener('click', (e) => {
+  const link = e.target.closest('a[data-lightbox]');
+  if (!link) return;
+  e.preventDefault();
+
+  const src = link.getAttribute('href');
+
+  // 1) data-title sur le lien
+  // 2) aria-label du lien
+  // 3) .section-title de la section parente
+  // 4) fallback: texte du lien
+  const title =
+    link.dataset.title ||
+    link.getAttribute('aria-label') ||
+    link.closest('section')?.querySelector('.section-title')?.textContent?.trim() ||
+    link.textContent?.trim() ||
+    '';
+
+  openLightbox(src, title, link);
+});
