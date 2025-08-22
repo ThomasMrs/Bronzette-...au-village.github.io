@@ -5,7 +5,7 @@ const HOURS = [
   { day: 'Mercredi', open: '08:00', close: '21:00', note: '(jour de marché)' },
   { day: 'Jeudi', open: '09:00', close: '21:00' },
   { day: 'Vendredi', open: '09:00', close: '21:00' },
-  { day: 'Samedi', open: '08:00', close: '21:00' },
+  { day: 'Samedi', open: '08:00', close: '21:00', note: '(jour de marché)' },
   { day: 'Dimanche', open: '09:00', close: '12:00' }
 ];
 
